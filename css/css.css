@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Code', Arial,  monospace;
+    text-transform: uppercase;
+}
+
+body {
+    background-color: #20283f;
+}
+
+.game {
+    background-color: #213e52;
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    gap: 15px;
+    justify-content: center;
+    padding: 15px;
+    max-width: max-content;
+    margin: auto;
+}
+
+.card {
+    background-color: #002642;
+    padding: 2.5rem;
+    font-size: 4rem;
+    color:#8fdfdd;
+    height: 150px;
+    text-align: center;
+
+}
+
+.fimDeJogo {
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color:#002742;
+    color: #8fdfdd;
+    transform: translateY(-100%);
+    /* display: none; */
+    transition: all .5s;
+}
+
+.fimDeJogo h2 {
+    text-align: center;
+    font-size: 4rem;
+    padding: 30px 0;
+    
+    
+}
+
+.players {
+    font-size: 1.5rem;
+    padding: 0 25px;
+    width: max-content;
+    margin: auto;
+    border: 2px dashed #8fdfdd;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.players span {
+    font-size: 3em;
+    color: red;
+}
+
+.resultado span {
+    font-size: 10px;
+}
+
+.players.v1 {
+    display: flex;
+    font-size: 1em;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    border-color: #213e52;
+    color: #8fdfdd;
+    font-weight: bold;
+    border: none;
+    margin: -20px auto;
+    max-width: max-content;
+}
+
+.players.v1 > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.players.v1 .btn {
+    border-radius: 50%;
+    padding: 1em;
+}
+
+.players.v1 .btn i {
+    font-size: 2em;
+    margin: 0;
+}
+
+.players.v1 .sobre {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.players.v1 h2 {
+    text-align: center;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    display: block;
+    margin: 50px auto;
+    transition: all .5s;
+    border-radius: 50px;
+}
+
+.btn:hover, .btn:active {
+    transform: scale(1.1);
+    color: #002642;
+    background-color: #8fdfdd;
+}
+
+.resultadoFinal {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #8fdfdd;
+    font-size: 1.5em;
+    padding-top: 50px;
+}
+
+.resultadoFinal span {
+    color: #ff0000;
+    font-size: 3em;
+}
+
+footer p{
+    text-align: center;
+    padding: 50px;
+    color: #fff;
+    font-size: .8em;
+    text-transform: lowercase;
+}
+
+footer p::first-letter{
+    text-transform: uppercase;
+}
+footer a {
+    color: #8fdfdd;
+    text-decoration: none;
+}
+
+footer strong {
+    text-transform: capitalize;
+    font-size: 1.5em;
+}
+
+@media (max-width: 500px) {
+    .game {
+        grid-template-columns: repeat(3, 120px);
+    }
+
+    .game .card {
+        height: 120px;
+        padding: 1rem;
+        
+    }
+
+    .players.v1 {
+        flex-direction: column;
+        margin: 0 auto;
+        justify-content: baseline;
+        font-size: 12px;
+        padding: 15px 0;
+    }
+
+    .players.v1 .btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        margin: 0;
+        padding: 10px;
+        order: 3;
+        background-color: #8fdfdd;
+        color: #002742;
+    }
+
+    .players.v1 .btn i {
+        font-size: 30px;
+    }
+}
