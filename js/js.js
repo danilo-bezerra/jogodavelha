@@ -1,40 +1,22 @@
-let cards = document.querySelectorAll('.card')
-let fimDeJogo = document.querySelector('.fimDeJogo')
-let sobre = document.querySelector('.sobre')
-let pHumano = document.querySelectorAll('.humano')
-let pComputador = document.querySelectorAll('.naoHumano')
-let state = (Math.random() * 100) > 50 ? true : false //
-let player = state ? 'X' : 'O'
-let playerComputador = !state ? 'X' : 'O'
+const cards = document.querySelectorAll('.card')
+const fimDeJogo = document.querySelector('.fimDeJogo')
+const pHumano = document.querySelectorAll('.humano')
+const pComputador = document.querySelectorAll('.naoHumano')
+const placarHumano = document.querySelectorAll('.placarHumano')
+const placarComputador = document.querySelectorAll('.placarComputador')
+
+const state = (Math.random() * 100) > 50 ? true : false
+const player = state ? 'X' : 'O'
+const playerComputador = !state ? 'X' : 'O'
 
 let texto
-
-let placarHumano = document.querySelector('.placarHumano')
-let placarComputador = document.querySelector('.placarComputador')
-
-let pontosHumano = 0
-let pontosComputador = 0
-
-placarHumano.innerText = 0
-placarComputador.innerText = 0
-
-
-let win = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-    [0,4,8],
-    [2,4,6]
-]
 let venceu = false
+let pontosHumano = 0, pontosComputador = 0
+let posicoesLivres = [0,1,2,3,4,5,6,7,8]
+let win = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
 
 pHumano.innerHTML = player
 pComputador.innerHTML = playerComputador
-
-let posicoesLivres = [0,1,2,3,4,5,6,7,8]
 
 pHumano.forEach(
     (e) => {
@@ -61,6 +43,8 @@ cards.forEach(
         }
     }
 )
+
+
 const jogadaComputador = () => {
     if (posicoesLivres.length > 0) {
         let escolhaComputador = Math.floor(Math.random() * (posicoesLivres.length - 1))
@@ -76,26 +60,39 @@ const playerWinGame = (win, cards, playerAtual) => {
         let A = cards[i[0]].innerHTML == 'X'
         let B = cards[i[1]].innerHTML == 'X'
         let C = cards[i[2]].innerHTML == 'X'
-        
+
         let D = cards[i[0]].innerHTML == 'O'
         let E = cards[i[1]].innerHTML == 'O'
         let F = cards[i[2]].innerHTML == 'O'
 
         if (((A && B && C) || (F && D && E)) && venceu == false) {
             mudaEstilo([cards[i[0]], cards[i[1]], cards[i[2]]], true)
+
             texto = `<p class="resultadoFinal">Vencedor:<span>${playerAtual}</span></p>`
+
             setTimeout(telaFimDeJogo, 1500)
+
             venceu = true
+
             if (playerAtual == player) {
                 pontosHumano += 1
-                placarHumano.innerHTML = pontosHumano
+                placarHumano.forEach(
+                    e => {
+                        e.innerHTML = pontosHumano
+                    }
+                )
+
             } else {
                 pontosComputador += 1
-                placarComputador.innerHTML = pontosComputador
+                placarComputador.forEach(
+                    e => {
+                        e.innerHTML = pontosComputador
+                    }
+                )
             }
         } else if (posicoesLivres.length == 0 && venceu == false) {
-            texto = `
-            <p class="resultadoFinal">Ops!<span>DEU VELHA</span></p>`
+            texto = `<p class="resultadoFinal">Ops!<span>DEU VELHA</span></p>`
+
             setTimeout(telaFimDeJogo, 500)
         }
     }
